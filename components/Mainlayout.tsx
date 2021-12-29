@@ -12,8 +12,10 @@ const Mainlayout = ({children}: MainlayoutProps) => {
   return (
     <div className={styles.wrapper}>
       <Header/>
-      <MainMenu/>
+      <div className={styles.wrapperContent}>
+        <MainMenu/>
         {children}
+      </div>
       <Footer/>
     </div>
   );
