@@ -4,4 +4,5 @@ module.exports = {
   images: {
     domains: ['flagcdn.com', 'mainfacts.com', 'upload.wikimedia.org'],
   },
+
 }

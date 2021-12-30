@@ -1,0 +1,64 @@
+.wrapper {
+  width: 100%;
+  margin-top: 30px;
+
+
+}
+.top {
+  display: flex;
+  justify-content: flex-start;
+  h1 {
+    margin: 5px 20px 5px 10px;
+  }
+  span {
+    margin: 0 20px 5px 10px;
+  }
+
+}
+
+.href {
+  margin-left: 10px;
+  a {
+    border-bottom: 1px solid red ;
+    cursor: pointer;
+  }
+}
+
+.price {
+  font-size: 40px;
+  text-align: center;
+}
+
+.counter {
+  display: flex;
+  margin-top: 10px;
+  margin-left: 10px;
+  div {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 30%;
+    height: 30px;
+    color: red;
+    border: 1px solid lightgray;
+    cursor: pointer;
+  }
+  input {
+    width: 30%;
+    border: 1px solid lightgray;
+    outline: none;
+    text-align: center;
+  }
+  
+}
+.button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 90%;
+  height: 60px;
+  margin: 10px 5px 5px 10px;
+  cursor: pointer;
+  color: white;
+  background-color: red;
+}

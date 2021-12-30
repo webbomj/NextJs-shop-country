@@ -2,6 +2,7 @@ import React from 'react';
 import Image from 'next/image';
 import { CategoryItemProps } from '../types/category';
 import styles from '../styles/CategoryItem.module.scss'
+import Link from 'next/link';
 
 const CategoryList = ({item}:CategoryItemProps) => {
   
@@ -16,7 +17,7 @@ const CategoryList = ({item}:CategoryItemProps) => {
       </div>
       <div className={styles.info}>
         <div className={styles.title}>
-          <span>{item.name.common}</span>
+          <Link href={`/country/${item.name.common.toLowerCase()}`}><a><span>{item.name.common}</span></a></Link>
         </div>
         <div className={styles.price}>
           {price + '$'}
