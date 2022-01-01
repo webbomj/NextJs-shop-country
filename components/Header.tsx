@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {FC} from 'react';
 import Image from 'next/image'
 import styles from '../styles/Header.module.scss';
 import Comparison from './ui/icons/Comparison';
@@ -7,7 +7,7 @@ import Search from './ui/icons/Search';
 import Logo from '../public/img/Logo.png';
 import Link from 'next/link';
 
-const Header = () => {
+const Header: FC = () => {
   return (
     <header className={styles.header}>
       <div className={styles.logo}>
@@ -20,10 +20,17 @@ const Header = () => {
            <input/>
         </div>
       <div className={styles.icons}>
-        <Comparison width='20px' height='20px' color='#e86a23'/>
-        <span>Comparison</span>
-        <Cart width='20px' height='20px' color='#e86a23'/>
-        <span>Cart</span>
+        <div className={styles.iconItem}>
+          <Comparison width='20px' height='20px' color='#e86a23'/>
+          <span>Comparison</span>
+          <div className={styles.iconCounter}>Тут число какое то</div>
+        </div>
+        <div className={styles.iconItem}>
+          <Cart width='20px' height='20px' color='#e86a23'/>
+          <span>Cart</span>
+          <div className={styles.iconCounter}>Тут число какое то</div>
+        </div>
+        
       </div>
     </header>
   );

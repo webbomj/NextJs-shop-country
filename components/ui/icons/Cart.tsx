@@ -6,7 +6,7 @@ interface CartProps {
   color: string;
 }
 
-const Cart = ({width, height, color}: CartProps) => {
+const Cart = ({width, height, color}: CartProps): JSX.Element => {
   return (
   <svg version="1.0" xmlns="http://www.w3.org/2000/svg"
     width={width} height={height} viewBox="0 0 512.000000 512.000000"

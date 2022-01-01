@@ -1,14 +1,14 @@
-import React, { ReactNode } from 'react';
+import React, { ReactNode, ReactChildren } from 'react';
 import Header from './Header';
 import Footer from './Footer';
 import styles from '../styles/Mainlayout.module.scss';
 import MainMenu from './MainMenu';
 
 interface MainlayoutProps {
-  children: ReactNode
+  children: ReactNode | ReactChildren
 }
 
-const Mainlayout = ({children}: MainlayoutProps) => {
+const Mainlayout = ({children}: MainlayoutProps): JSX.Element => {
   return (
     <div className={styles.wrapper}>
       <Header/>

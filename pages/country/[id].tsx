@@ -2,25 +2,71 @@ import React, { useState } from 'react';
 import { GetServerSideProps } from 'next';
 import { useRouter } from 'next/router';
 import Image from 'next/image';
-import { CategoryDatas } from '../../types/category';
+import { CategoryDatas, CategoryData } from '../../types/category';
 import styles from '../../styles/Country.module.scss';
 import Link from 'next/link';
+import Head from 'next/head';
 
-const Country = ({data}: CategoryDatas) => {
+const Country = ({data}: CategoryDatas): JSX.Element => {
   const router = useRouter();
   const [quantity, setQuantity] = useState(1)
   
-  console.log(data)
   const currencies = Object.keys(data[0].currencies);
   const languages = Object.keys(data[0].languages);
   const linkRegion = `${process.env.NEXT_PUBLIC_API_URL}/category/${data[0].region?.toLowerCase()}`
-  console.log(linkRegion)
+  
+  const incCounter = () => {
+    setQuantity(prev => prev + 1);
+  }
+  const decCounter = () => {
+    if (quantity === 1) {
+      return
+    } else {
+      setQuantity(prev => prev - 1);
+    }
+  }
+
+  const addToCart = () => {
+    const oldLocalStorage = localStorage.getItem('cart')
+    let oldCart: CategoryData[] | [] = [];
+    let newCartStorage;
+    if (oldLocalStorage?.length) {
+      oldCart = JSON.parse(oldLocalStorage)
+      let currentCartItem = oldCart.filter(el => el.name.common === data[0].name.common)
+      if (currentCartItem.length >= 1) {
+        let upCurrentItem = currentCartItem.map(el => ({...el, count: quantity}))
+        let newCart = 
+        [...oldCart.filter(el => el.name.common !== data[0].name.common), 
+        ...upCurrentItem]
+        localStorage.removeItem('cart');
+        localStorage.setItem('cart', JSON.stringify( newCart ));
+        return
+      } else {
+        newCartStorage = JSON.stringify([...oldCart, {...data[0], count: quantity}]);
+        console.log(newCartStorage)
+      }    
+    } else {
+      newCartStorage = JSON.stringify([{...data[0], count: quantity}]);
+    }
+    localStorage.setItem('cart', newCartStorage);
+  }
+
   return (
     <>
+    <Head>
+      <title>
+        Buy {data[0].name?.common + ' ' + '(' + data[0].name?.official + ')' + ' ' + data[0].region + ' - ' + Math.abs(((data[0].area / data[0].population) * 10000)).toFixed(2) + '$'}
+      </title>
+      <meta name="description" content={`You can buy ${data[0].name?.common} at a low cost. We offer you free shipping and a 7-day warranty`} />
+    </Head>
     <div className={styles.wrapper}>
       <div className={styles.top}>
-        <div>
-          <Image src={data[0].flags?.svg ? data[0].flags.svg : data[0].flags.png} width={500} height={250} alt={data[0].name?.common}/>
+        <div className={styles.img}>
+          <Image src={data[0].flags?.svg ? data[0].flags.svg : data[0].flags.png}
+            width='500px'
+            height='250px'
+            alt={data[0].name?.common}
+            />
         </div>
         <div>
           <h1>{data[0].name?.common}</h1>
@@ -28,34 +74,68 @@ const Country = ({data}: CategoryDatas) => {
           <div className={styles.href}>Region: <a onClick={() => router.push(linkRegion)}>{data[0].region}</a></div>
           <div className={styles.price}>{Math.abs(((data[0].area / data[0].population) * 10000)).toFixed(2)}$</div>
           <div className={styles.counter}>
-            <div> 
+            <div className={styles.dec} onClick={() => decCounter()}> 
               &#8722;
             </div>
             <input type="text" value={quantity} />
-            <div>
+            <div className={styles.inc} onClick={() => incCounter()}>
               &#43;
             </div>
           </div>
-          <div className={styles.button}>Add to Cart</div>
+          <div className={styles.button} onClick={() => addToCart()}>Add to Cart</div>
         </div>
       </div>
-
-      <div>Independent: {data[0].independent ? 'Yes' : 'No'}</div>
-      Currencies: <ul>{currencies.map(currenc => (
-        <li key={currenc}>{data[0].currencies[currenc].name + ' ' + data[0].currencies[currenc].symbol}</li>
-      ))}
-      </ul>
-      <div>Capital: {data[0].capital[0]}</div>
-      
-      <div>Subregion: {data[0].subregion}</div>
-      Languages: <ul>{languages.map(lang => (
-        <li key={lang}>{data[0].languages[lang]}</li>
-      ))}
-      </ul>
-      <div>Lat, Lng: {data[0].latlng[0] + ', ' + data[0].latlng[1]}</div>
-      <div>Area: {data[0].area} km<sup>2</sup></div>
-      <div>Population: {data[0].population}</div>
-      <div>Timezones: {data[0].timezones[0]}</div>
+      <h2>Specifications</h2>
+      <table className={styles.table}>
+        <tbody>
+          <tr>
+            <th>Characteristic</th>
+            <th></th>
+          </tr>  
+          <tr>
+            <td>Currencies:</td>
+            <td>
+              <ul>{currencies.map(currenc => (
+                <li key={currenc}>{data[0].currencies[currenc].name + ' ' + data[0].currencies[currenc].symbol}</li>
+                ))}
+              </ul>
+            </td>
+          </tr>
+          <tr>
+            <td>Capital:</td>
+            <td> {data[0].capital[0]}</td>
+          </tr>
+          <tr>
+            <td>Subregion:</td>
+            <td>{data[0].subregion}</td>
+          </tr>
+          <tr>
+            <td>Coordinates(lat, lng):</td>
+            <td>{data[0].latlng[0] + ', ' + data[0].latlng[1]}</td>
+          </tr>
+          <tr>
+            <td>Area:</td>
+            <td>{data[0].area} km<sup>2</sup></td>
+          </tr>
+          <tr>
+            <td>Population:</td>
+            <td>{data[0].population}</td>
+          </tr>
+          <tr>
+            <td>Timezones:</td>
+            <td> {data[0].timezones[0]}</td>
+          </tr>
+          <tr>
+            <td>Languages:</td>
+            <td>
+              <ul>{languages.map(lang => (
+                <li key={lang}>{data[0].languages[lang]}</li>
+                ))}
+              </ul>
+            </td>
+          </tr>
+        </tbody>
+      </table>
     </div>
     </>
   );
@@ -64,12 +144,21 @@ const Country = ({data}: CategoryDatas) => {
 export default Country;
 
 export const getServerSideProps: GetServerSideProps = async (context) => {
-  const {id} = context.params
+  const { id }: any = context.params
   console.log(process.env.LOCALHOST)
-  const res = await fetch(`https://restcountries.com/v3.1/name/${id}`);
+  const res = await fetch(`https://restcountries.com/v3.1/name/${id}?fullText=true`);
   const data = await res.json();
   
   if (!data) {
+    return {
+      redirect: {
+        destination: '/',
+        permanent: false,
+      },
+    }
+  }
+
+  if (data.status === 404) {
     return {
       redirect: {
         destination: '/',
@@ -84,3 +173,5 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
     }
   }
 }
+
+

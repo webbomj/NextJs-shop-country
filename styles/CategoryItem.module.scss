@@ -1,19 +1,40 @@
 .cart {
   display: flex;
   flex-direction: column;
-  min-height: 300px;
+  position: relative;
+  min-height: 250px;
   width: 250px;
   margin-top: 30px;
-  &:not(:nth-child(4)) {
-    margin-right: auto;
+  padding: 5px;
+  background-color: rgba(14, 167, 159, 0.205);
+  border-radius: 10px;
+  &:not(:nth-child(4n)) {
+    margin-right: 20px;
   }
+}
+
+.img {
+  text-align: center;
 }
 
 .title {
   font-size: 24px;
+  text-align: center;
 }
 
 .price {
+  margin-top: 20px;
   font-size: 30px;
   font-weight: bold;
+}
+
+.count {
+  display: flex;
+  flex-direction: column;
+}
+
+.character {
+  position: absolute;
+  bottom: 10px;
+  left: 10px;
 }

@@ -1,9 +1,9 @@
 import Link from 'next/link';
-import React from 'react';
+import React, {FC} from 'react';
 import styles from '../styles/Footer.module.scss';
 
 
-const Footer = () => {
+const Footer: FC = () => {
   return (
     <footer className={styles.footer}>
       <div>Shopka &#169; {new Date().getFullYear()}</div> 

@@ -5,7 +5,7 @@ export interface CategoryData {
   },
   "independent": boolean,
   "capital": [string],
-  "region"?: string,
+  "region": string,
   "currencies": {
     [propName: string]: { 
       "name" : string,
@@ -28,7 +28,8 @@ export interface CategoryData {
   "coatOfArms"?: {
     "png": string,
     "svg": string},
-  "startOfWeek"?: string
+  "startOfWeek"?: string,
+  "count": number,
 }
 
 export interface CategoryDatas {
