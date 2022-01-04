@@ -13,7 +13,7 @@ const CategoryList = ({item}:CategoryItemProps):JSX.Element => {
   return (
     <div className={styles.cart}>
       <div className={styles.img}>
-        <Image src={item.flags.svg ? item.flags.svg : item.flags.png} alt={item.name.common} width={200} height={100}/>
+      <Link href={`/country/${item.name.common.toLowerCase()}`}><a><Image src={item.flags.svg ? item.flags.svg : item.flags.png} alt={item.name.common} width={200} height={100}/></a></Link>
       </div>
       <div className={styles.info}>
         <div className={styles.title}>

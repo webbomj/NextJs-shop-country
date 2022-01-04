@@ -1,9 +1,9 @@
-import React from 'react';
+import React, {FC} from 'react';
 import Image from 'next/image';
 import styles from '../styles/MainMenu.module.scss';
 import Link from 'next/link';
 
-const MainMenu = () => {
+const MainMenu:FC = () => {
   return (
     <div className={styles.mainMenu}>
       <div className={styles.links}><Link href='/category/africa'><a><Image src='/img/flags/south-africa.png' alt="Africa-logo" width='53px' height='53px' placeholder='empty' /><span>Africa</span></a></Link></div>

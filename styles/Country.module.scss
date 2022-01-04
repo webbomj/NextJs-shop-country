@@ -16,6 +16,19 @@
   }
 }
 
+.img {
+  position: relative;
+  svg {
+
+    position: absolute;
+    top: 0;
+    left: 0;
+    background-color: blanchedalmond;
+    border-radius: 50%;
+    cursor: pointer;
+  }
+}
+
 .href {
   margin-left: 10px;
   a {

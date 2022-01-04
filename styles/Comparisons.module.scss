@@ -1,0 +1,52 @@
+.title {
+  text-align: center;
+  margin-top: 30px;
+}
+
+.table {
+  border-collapse: collapse;
+  border: none;
+
+}
+
+.tr {
+  &:nth-child(2n) {
+    background-color: blanchedalmond;
+  }
+}
+
+.td {
+  position: relative;
+  border: 1px solid blanchedalmond;
+  padding: 10px 10px 10px 10px;
+  text-align: center;
+  &:nth-child(4) {
+    padding-right: 0;
+  }
+  svg {
+    background-color: blanchedalmond;
+    border-radius: 50%;
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    cursor: pointer;
+  }
+}
+
+.a {
+  cursor: pointer;
+  color: #e86a23;
+  font-weight: bold;
+  text-decoration: solid;
+}
+
+.img {
+  cursor: pointer;
+}
+
+.span {
+  display: block;
+  margin-top: 30px;
+  font-size: 25px;
+  text-align: center;
+}
