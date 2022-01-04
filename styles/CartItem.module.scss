@@ -1,0 +1,69 @@
+.wrapper {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  min-width: 600px;
+  margin: 0 auto;
+  padding: 5px 15px 5px 15px;
+}
+
+.flag {
+  width: 150px;
+  margin-right: 10px;
+  cursor: pointer;
+}
+
+.info {
+  display: flex;
+  flex-direction: column;
+  padding: 0 10px 0 10px;
+  margin-right: 10px;
+}
+
+.title {
+  font-size: 20px;
+  font-weight: bold;
+  margin-bottom: 10px;
+  color: #bd571c;
+  cursor: pointer;
+}
+
+.details {
+  color: gray
+}
+
+
+.price {
+  font-size: 25px;
+  font-weight: bold;
+  margin-right: 20px;
+}
+
+.input {
+  text-align: center;
+  width: 40px;
+}
+
+.counter {
+  display: flex;
+  margin-right: 10px;
+}
+
+.counterButton {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 0 5px 0 5px;
+  width: 30px;
+  height: 30px;
+  background-color: lightgray;
+  color: red;
+  cursor: pointer;
+}
+
+.removeButton {
+  background-color: lightgray;
+  border: none;
+  padding: 10px;
+}
+

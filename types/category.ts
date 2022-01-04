@@ -30,6 +30,7 @@ export interface CategoryData {
     "svg": string},
   "startOfWeek"?: string,
   "count": number,
+  "totalPrice"?: number,
 }
 
 export interface CategoryDatas {
@@ -37,5 +38,7 @@ export interface CategoryDatas {
 }
 
 export interface CategoryItemProps {
-  item: CategoryData
+  item: CategoryData,
+  deleteLocal?: (name: string) => void,
+  changeFlag?: () => void,
 }

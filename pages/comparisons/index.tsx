@@ -11,6 +11,7 @@ const Comparison = () => {
   const router = useRouter()
   const numberOfGood = 0;
   const [allComparisonGoods, setAllComparisonGoods] = useState<CategoryData[]>([])
+  
   useEffect(() => {
     if (localStorage.getItem('comparison') !== null) {
       setAllComparisonGoods(JSON.parse(localStorage.getItem('comparison')))
@@ -52,7 +53,7 @@ const Comparison = () => {
                   height='150px'
                   alt={allComparisonGoods[numberOfGood]?.name?.common}
                   /> 
-                  <div onClick={() => deleteFavorite(numberOfGood)}><Trash width='30px' height='30px' color='grey'/></div>
+                  <div className={styles.trash} onClick={() => deleteFavorite(numberOfGood)}><Trash width='30px' height='30px' color='black'/></div>
               </>
                 : null}
             </td>
@@ -72,7 +73,7 @@ const Comparison = () => {
                 height='150px'
                 alt={allComparisonGoods[numberOfGood + 1]?.name?.common}
                 />
-                <div onClick={() => deleteFavorite(numberOfGood + 1)}><Trash width='30px' height='30px' color='grey'/></div>
+                <div onClick={() => deleteFavorite(numberOfGood + 1)}><Trash width='30px' height='30px' color='black'/></div>
               </>
                 : null}</td> : null}
             {favorites >= 3 ? <td className={styles.td}>
@@ -91,7 +92,7 @@ const Comparison = () => {
                 height='150px'
                 alt={allComparisonGoods[numberOfGood + 2]?.name?.common}
                 /> 
-                <div  onClick={() => deleteFavorite(numberOfGood + 2)}><Trash width='30px' height='30px' color='grey'/></div>
+                <div  onClick={() => deleteFavorite(numberOfGood + 2)}><Trash width='30px' height='30px' color='black'/></div>
               </>
                 : null}
             </td> : null}
@@ -164,7 +165,7 @@ const Comparison = () => {
       </table>
     </div>
   </>
-: <span className={styles.span}>Nothing in favorite</span>}
+: <span className={styles.span}>Nothing in comparison`s table</span>}
   </>
 
   );

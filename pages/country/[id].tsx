@@ -4,7 +4,6 @@ import { useRouter } from 'next/router';
 import Image from 'next/image';
 import { CategoryDatas, CategoryData } from '../../types/category';
 import styles from '../../styles/Country.module.scss';
-import Link from 'next/link';
 import Head from 'next/head';
 import Comparison from '../../components/ui/icons/Comparison';
 
@@ -40,7 +39,7 @@ const Country = ({data}: CategoryDatas): JSX.Element => {
         [...oldCart.filter(el => el.name.common !== data[0]?.name.common), 
         ...upCurrentItem]
         localStorage.removeItem(flag);
-        localStorage.setItem(flag, JSON.stringify( newCart ));
+        localStorage.setItem(flag, JSON.stringify( newCart ));   
         return
       } else {
         newCartStorage = JSON.stringify([...oldCart, {...data[0], count: quantity}]);

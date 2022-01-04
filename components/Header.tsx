@@ -1,4 +1,4 @@
-import React, {FC} from 'react';
+import React, {FC, useEffect, useState} from 'react';
 import Image from 'next/image'
 import styles from '../styles/Header.module.scss';
 import Comparison from './ui/icons/Comparison';
@@ -11,8 +11,18 @@ import Link from 'next/link';
 
 const Header: FC = () => {
   const router = useRouter();
+  // const localComparison = JSON.parse(localStorage.getItem('comparison')).length || 0;
+  const [comparison, setComparison] = useState(0)
+  const [cart, setCart] = useState(0)
+  // let countComparison = localStorage.getItem('comparison') ? JSON.parse(localStorage.getItem('comparison')).length : 0;
+  // let countCart = localStorage?.getItem('cart') ? JSON.parse(localStorage.getItem('cart')).length : 0;
 
-  let countFavorites = localStorage.getItem('comparison') ? JSON.parse(localStorage.getItem('comparison'))?.length : 0;
+  // useEffect(() => {
+  //   setCart(countCart)
+  //   setComparison(countComparison)
+  // }, [countComparison, countCart])
+
+
   return (
     <header className={styles.header}>
       <div className={styles.logo}>
@@ -28,12 +38,12 @@ const Header: FC = () => {
         <div className={styles.iconItem} onClick={() => router.push(`${process.env.NEXT_PUBLIC_API_URL}comparisons`)}>          
           <Comparison width='20px' height='20px' color='#e86a23'/>
           <span>Comparison</span>
-          <div className={styles.iconCounter}>{countFavorites}</div>
+          <div className={comparison === 0 ? styles.iconCounterHide : styles.iconCounter}>{comparison}</div>
         </div>
-        <div className={styles.iconItem}>
+        <div className={styles.iconItem} onClick={() => router.push(`${process.env.NEXT_PUBLIC_API_URL}cart`)}> 
           <Cart width='20px' height='20px' color='#e86a23'/>
           <span>Cart</span>
-          <div className={styles.iconCounter}>asdasd</div>
+          <div className={cart === 0 ? styles.iconCounterHide : styles.iconCounter}>{cart}</div>
         </div>
         
       </div>
