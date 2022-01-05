@@ -9,7 +9,10 @@ import Head from 'next/head';
 
 const Category = ({data = []}: CategoryDatas): JSX.Element => {
   const router = useRouter();
-  console.log(router)
+  
+
+
+  
   return (
     <>
     <Head>

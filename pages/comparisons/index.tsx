@@ -4,12 +4,12 @@ import Image from 'next/image';
 import styles from '../../styles/Comparisons.module.scss'
 import { useRouter } from 'next/router';
 import Trash from '../../components/ui/icons/Trash';
-
+import Head from 'next/head';
 
 const Comparison = () => {
   // const [numberOfGood, setNumberOfGood] = useState<Number>(0);
   const router = useRouter()
-  const numberOfGood = 0;
+  const [numberOfGood, setNumberOfGood ] = useState(0);
   const [allComparisonGoods, setAllComparisonGoods] = useState<CategoryData[]>([])
   
   useEffect(() => {
@@ -26,13 +26,32 @@ const Comparison = () => {
     localStorage.setItem('comparison', JSON.stringify(filterFavorite))
   }
 
+  const swapLeftTable = () => {
+    if (numberOfGood === 0) {
+      return
+    }
+    setNumberOfGood(prev => prev - 1)
+  }
+  const swapRightTable = () => {
+    if (numberOfGood >= allComparisonGoods.length - 3) {
+      return
+    }
+    setNumberOfGood(prev => prev + 1)
+  }
+
   return (
     <>
+    <Head>
+      <title>Comparison table of countries by parameters</title>
+      <meta name="description" content="Lorem, ipsum dolor sit amet consectetur adipisicing elit. Consequuntur quasi ad alias repellat molestias id quia eius. Unde, explicabo corporis? Voluptates repellendus minus tempore eius in totam, rem iure temporibus." />
+    </Head>
     {favorites > 0
       ?
     <>
-    <h1 className={styles.title} >Comparison Tables</h1>
-    <div>
+    <h1 className={styles.title} >Comparison Table</h1>
+    <div className={styles.arrowRelative}>
+      <div className={styles.arrowLeft} onClick={() => swapLeftTable()}></div>
+      <div className={styles.arrowRight} onClick={() => swapRightTable()}></div>
       <table className={styles.table}>
         <tbody>
           <tr className={styles.tr}>
@@ -53,7 +72,7 @@ const Comparison = () => {
                   height='150px'
                   alt={allComparisonGoods[numberOfGood]?.name?.common}
                   /> 
-                  <div className={styles.trash} onClick={() => deleteFavorite(numberOfGood)}><Trash width='30px' height='30px' color='black'/></div>
+                  <div onClick={() => deleteFavorite(numberOfGood)}><Trash width='30px' height='30px' color='#e86a23'/></div>
               </>
                 : null}
             </td>
@@ -73,7 +92,7 @@ const Comparison = () => {
                 height='150px'
                 alt={allComparisonGoods[numberOfGood + 1]?.name?.common}
                 />
-                <div onClick={() => deleteFavorite(numberOfGood + 1)}><Trash width='30px' height='30px' color='black'/></div>
+                <div onClick={() => deleteFavorite(numberOfGood + 1)}><Trash width='30px' height='30px' color='#e86a23'/></div>
               </>
                 : null}</td> : null}
             {favorites >= 3 ? <td className={styles.td}>
@@ -92,7 +111,7 @@ const Comparison = () => {
                 height='150px'
                 alt={allComparisonGoods[numberOfGood + 2]?.name?.common}
                 /> 
-                <div  onClick={() => deleteFavorite(numberOfGood + 2)}><Trash width='30px' height='30px' color='black'/></div>
+                <div onClick={() => deleteFavorite(numberOfGood + 2)}><Trash width='30px' height='30px' color='#e86a23'/></div>
               </>
                 : null}
             </td> : null}
@@ -163,6 +182,7 @@ const Comparison = () => {
           </tr>
         </tbody>
       </table>
+      
     </div>
   </>
 : <span className={styles.span}>Nothing in comparison`s table</span>}

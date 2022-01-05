@@ -26,30 +26,7 @@ const Country = ({data}: CategoryDatas): JSX.Element => {
     }
   }
 
-  const addToCart = (flag: string) => {
-    const oldLocalStorage = localStorage.getItem(flag)
-    let oldCart: CategoryData[] | [] = [];
-    let newCartStorage;
-    if (oldLocalStorage?.length) {
-      oldCart = JSON.parse(oldLocalStorage)
-      let currentCartItem = oldCart.filter(el => el.name.common === data[0]?.name.common)
-      if (currentCartItem.length >= 1) {
-        let upCurrentItem = currentCartItem.map(el => ({...el, count: quantity}))
-        let newCart = 
-        [...oldCart.filter(el => el.name.common !== data[0]?.name.common), 
-        ...upCurrentItem]
-        localStorage.removeItem(flag);
-        localStorage.setItem(flag, JSON.stringify( newCart ));   
-        return
-      } else {
-        newCartStorage = JSON.stringify([...oldCart, {...data[0], count: quantity}]);
-        console.log(newCartStorage)
-      }    
-    } else {
-      newCartStorage = JSON.stringify([{...data[0], count: quantity}]);
-    }
-    localStorage.setItem(flag, newCartStorage);
-  }
+  
 
   return (
     <>
@@ -73,7 +50,7 @@ const Country = ({data}: CategoryDatas): JSX.Element => {
         <div>
           <h1>{data[0]?.name?.common}</h1>
           <span>{data[0]?.name?.official}</span>
-          <div className={styles.href}>Region: <a onClick={() => router.push(linkRegion)}>{data[0]?.region}</a></div>
+          <div className={styles.href}>Region: <a className={styles.a} onClick={() => router.push(linkRegion)}>{data[0]?.region}</a></div>
           <div className={styles.price}>{Math.abs(((data[0]?.area / data[0]?.population) * 10000)).toFixed(2)}$</div>
           <div className={styles.counter}>
             <div className={styles.dec} onClick={() => decCounter()}> 
@@ -147,7 +124,6 @@ export default Country;
 
 export const getServerSideProps: GetServerSideProps = async (context) => {
   const { id }: any = context.params
-  console.log(process.env.LOCALHOST)
   const res = await fetch(`https://restcountries.com/v3.1/name/${id}?fullText=true`);
   const data = await res.json();
   
