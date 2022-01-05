@@ -11,7 +11,7 @@ const Cart:FC = () => {
 
   useEffect(() => {
     if (localStorage.getItem('cart')) {
-      let cartsItem:CategoryData[] = JSON.parse(localStorage.getItem('cart'))
+      let cartsItem:CategoryData[] = JSON.parse(localStorage.getItem('cart') || '')
       
       setGoods(cartsItem.sort((a, b) => {
         if (a.name.common < b.name.common) {
@@ -22,13 +22,13 @@ const Cart:FC = () => {
         }
         return 0;
       }))
- 
+        /* @ts-ignore */
       setTotal(cartsItem.reduce((acc, cur) => (acc + cur.totalPrice), 0))
     }
   }, [update])
 
   const deleteLocal = (name: string): void => {   
-    let localGoods: CategoryData[] = JSON.parse(localStorage.getItem('cart'));
+    let localGoods: CategoryData[] = JSON.parse(localStorage.getItem('cart') || '');
     let newLocalGoods = localGoods.filter(el => el.name.common !== name)
     setGoods(newLocalGoods)
     localStorage.setItem('cart', JSON.stringify(newLocalGoods))

@@ -42,3 +42,9 @@ export interface CategoryItemProps {
   deleteLocal?: (name: string) => void,
   changeFlag?: () => void,
 }
+
+export interface CartsItemProps {
+  item: CategoryData,
+  deleteLocal: (name: string) => void,
+  changeFlag: () => void,
+}

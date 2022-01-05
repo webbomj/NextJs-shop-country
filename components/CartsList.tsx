@@ -1,10 +1,10 @@
 import React, { useEffect, useState } from 'react';
-import { CategoryData, CategoryItemProps } from '../types/category';
+import { CategoryData, CategoryItemProps, CartsItemProps } from '../types/category';
 import Image from 'next/image';
 import styles from '../styles/CartItem.module.scss';
 import { useRouter } from 'next/router';
 
-const CartsList = ({item, deleteLocal, changeFlag}: CategoryItemProps) => {
+const CartsList = ({item, deleteLocal, changeFlag}: CartsItemProps) => {
   const [inputValue, setInputValue] = useState(item.count);
   const [price, setPrice] = useState(+Math.abs(((item.area / item.population) * 10000)).toFixed(2));
   let fullPrice = price * inputValue;
@@ -15,7 +15,7 @@ const CartsList = ({item, deleteLocal, changeFlag}: CategoryItemProps) => {
   }, [price, inputValue])
 
   const updateLocalStorage = (number: number, value: string) => {
-    let allGoods: CategoryData[] = JSON.parse(localStorage.getItem('cart'))
+    let allGoods: CategoryData[] = JSON.parse(localStorage.getItem('cart') || '')
     let thisGood: CategoryData[] = allGoods.filter(el => el.name.common === item.name.common)
     thisGood[0].count = number;
     if (value === 'dec') {
