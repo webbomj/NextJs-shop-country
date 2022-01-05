@@ -1,4 +1,4 @@
-import React, {ChangeEvent, FC, KeyboardEvent, KeyboardEventHandler, useEffect, useState} from 'react';
+import React, {ChangeEvent, FC, KeyboardEvent, useState} from 'react';
 import Image from 'next/image'
 import styles from '../styles/Header.module.scss';
 import Comparison from './ui/icons/Comparison';
@@ -11,20 +11,18 @@ import Link from 'next/link';
 
 const Header: FC = () => {
   const router = useRouter();
-
-  const [comparison, setComparison] = useState(0)
-  const [cart, setCart] = useState(0)
-
+  const [comparison, setComparison] = useState(0);
+  const [cart, setCart] = useState(0);
   const [inputValue, setInputValue] = useState('');
 
   const handleInput = (e:ChangeEvent<HTMLInputElement>) => {
     setInputValue(e.target.value)
   }
+
   const handleKeyDown = (e:KeyboardEvent<HTMLInputElement>) => {
     if (e.key === 'Enter') {
       router.push(`${process.env.NEXT_PUBLIC_API_URL}country/${inputValue}`)
     }
-    // setInputValue()
   }
 
   return (
@@ -36,7 +34,7 @@ const Header: FC = () => {
           <div className={styles.searchIcon}>
            <Search width='15px' height='15px' color='none'/>
           </div>
-           <input value={inputValue} onChange={(e) => handleInput(e)} onKeyDown={(e) => handleKeyDown(e)}/>
+          <input value={inputValue} onChange={(e) => handleInput(e)} onKeyDown={(e) => handleKeyDown(e)}/>
         </div>
       <div className={styles.icons}>
         <div className={styles.iconItem} onClick={() => router.push(`${process.env.NEXT_PUBLIC_API_URL}comparisons`)}>          
@@ -49,7 +47,6 @@ const Header: FC = () => {
           <span>Cart</span>
           <div className={cart === 0 ? styles.iconCounterHide : styles.iconCounter}>{cart}</div>
         </div>
-        
       </div>
     </header>
   );

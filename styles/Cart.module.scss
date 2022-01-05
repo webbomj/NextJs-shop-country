@@ -29,3 +29,53 @@
 .totalPriceNumber {
   font-weight: bold;
 }
+
+.modalWindow {
+  display: none;
+}
+
+.modalWindowActive {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: absolute;
+  top: 10vh;
+  left: calc(50vh + (320px / 2));
+  min-width: 320px;
+  min-height: 320px;
+  background-color: grey;
+  border-radius: 10px;
+}
+
+.closeIcon {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  font-size: 30px;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.text {
+  font-size: 24px;
+  text-align: center;
+  color: white;
+  margin: 0 15px 0 15px;
+}
+
+.cartEmpty {
+  color: red;
+}
+
+.buyButton {
+  text-align: right;
+  margin-bottom: 10px;
+  button {
+    border: none;
+    background-color: red;
+    color: white;
+    border-radius: 10px;
+    padding: 5px 15px 5px 15px;
+    cursor: pointer;
+  }
+}

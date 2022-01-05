@@ -1,5 +1,9 @@
 .container {
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
   padding: 0 2rem;
+  max-width: 700px;
 }
 
 .main {
@@ -40,9 +44,9 @@
 }
 
 .title {
-  margin: 0;
+  margin-top: 20px;
   line-height: 1.15;
-  font-size: 4rem;
+  font-size: 2.5rem;
 }
 
 .title,
@@ -108,9 +112,17 @@
   margin-left: 0.5rem;
 }
 
+.text {
+  display: block;
+  margin-bottom: 30px;
+  font-size: 1.5rem;
+
+}
+
 @media (max-width: 600px) {
   .grid {
     width: 100%;
     flex-direction: column;
   }
 }
+

@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { CategoryData, CategoryItemProps, CartsItemProps } from '../types/category';
+import { CategoryData, CartsItemProps } from '../types/category';
 import Image from 'next/image';
 import styles from '../styles/CartItem.module.scss';
 import { useRouter } from 'next/router';
@@ -11,20 +11,19 @@ const CartsList = ({item, deleteLocal, changeFlag}: CartsItemProps) => {
   const router = useRouter();
 
   useEffect(() => {
-    fullPrice = price * inputValue
+    fullPrice = price * inputValue;
   }, [price, inputValue])
 
   const updateLocalStorage = (number: number, value: string) => {
-    let allGoods: CategoryData[] = JSON.parse(localStorage.getItem('cart') || '')
-    let thisGood: CategoryData[] = allGoods.filter(el => el.name.common === item.name.common)
+    let allGoods: CategoryData[] = JSON.parse(localStorage.getItem('cart') || '');
+    let thisGood: CategoryData[] = allGoods.filter(el => el.name.common === item.name.common);
     thisGood[0].count = number;
     if (value === 'dec') {
       thisGood[0].totalPrice = price * (inputValue - 1);
     } else {
       thisGood[0].totalPrice = price * (inputValue + 1);
     }
-    
-    localStorage.setItem('cart', JSON.stringify([...allGoods.filter(el => el.name.common !== item.name.common), ...thisGood]))
+    localStorage.setItem('cart', JSON.stringify([...allGoods.filter(el => el.name.common !== item.name.common), ...thisGood]));
   }
 
   const incCount = () => {
@@ -48,7 +47,9 @@ const CartsList = ({item, deleteLocal, changeFlag}: CartsItemProps) => {
         <Image src={item.flags.svg ? item.flags.svg : item.flags.png} width='150px' height='75px' alt={item.name.common}/>
       </div>
       <div className={styles.info}>
-        <span className={styles.title} onClick={() => router.push(`${process.env.NEXT_PUBLIC_API_URL}country/${item.name.common.toLowerCase()}`)}>{item.name.common}</span>
+        <span className={styles.title} onClick={() => router.push(`${process.env.NEXT_PUBLIC_API_URL}country/${item.name.common.toLowerCase()}`)}>
+          {item.name.common}
+        </span>
         <span className={styles.details}>{`Population: ${item.population}`}</span>
         <span className={styles.details}>{`Area: ${item.area} km`}<sup>2</sup></span>
       </div>
@@ -59,7 +60,6 @@ const CartsList = ({item, deleteLocal, changeFlag}: CartsItemProps) => {
       </div>
       <div className={styles.price}>{fullPrice.toFixed(2)}$</div>
       <div><button className={styles.removeButton} onClick={() => deleteLocal(item.name.common)}>Remove</button></div>
-      
     </div>
   );
 };
