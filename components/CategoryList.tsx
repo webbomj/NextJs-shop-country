@@ -16,7 +16,7 @@ const CategoryList = ({item}:CategoryItemProps):JSX.Element => {
   const addToCart = (flag: string) => {
     const oldLocalStorage = localStorage.getItem(flag);
     let oldCart: CategoryData[] | [] = [];
-    let newCartStorage;
+    let newCartStorage: string = '';
     if (oldLocalStorage?.length) {
       oldCart = JSON.parse(oldLocalStorage);
       let currentCartItem = oldCart.filter(el => el.name.common === item?.name.common);

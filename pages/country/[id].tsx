@@ -9,7 +9,7 @@ import Comparison from '../../components/ui/icons/Comparison';
 
 const Country = ({data}: CategoryDatas): JSX.Element => {
   const router = useRouter();
-  const [quantity, setQuantity] = useState(1);
+  const [quantity, setQuantity] = useState<number>(1);
   const currencies = Object.keys(data[0]?.currencies);
   const languages = Object.keys(data[0]?.languages);
   const linkRegion = `${process.env.NEXT_PUBLIC_API_URL}/category/${data[0]?.region?.toLowerCase()}`;
@@ -29,7 +29,7 @@ const Country = ({data}: CategoryDatas): JSX.Element => {
   const addToCart = (flag: string) => {
     const oldLocalStorage = localStorage.getItem(flag);
     let oldCart: CategoryData[] | [] = [];
-    let newCartStorage;
+    let newCartStorage:string = ''; 
     if (oldLocalStorage?.length) {
       oldCart = JSON.parse(oldLocalStorage);
       let currentCartItem = oldCart.filter(el => el.name.common === data[0]?.name.common);
@@ -37,7 +37,7 @@ const Country = ({data}: CategoryDatas): JSX.Element => {
         let upCurrentItem = currentCartItem.map(el => ({...el, count: quantity, 
           totalPrice: +Math.abs(((el.area / el.population) * 10000)).toFixed(2) * quantity
         }));
-        let newCart = 
+        let newCart: CategoryData[] | [] = 
         [...oldCart.filter(el => el.name.common !== data[0]?.name.common), 
         ...upCurrentItem];
         localStorage.removeItem(flag);

@@ -11,9 +11,9 @@ import Link from 'next/link';
 
 const Header: FC = () => {
   const router = useRouter();
-  const [comparison, setComparison] = useState(0);
-  const [cart, setCart] = useState(0);
-  const [inputValue, setInputValue] = useState('');
+  const [comparison, setComparison] = useState<number>(0);
+  const [cart, setCart] = useState<number>(0);
+  const [inputValue, setInputValue] = useState<string>('');
 
   const handleInput = (e:ChangeEvent<HTMLInputElement>) => {
     setInputValue(e.target.value)

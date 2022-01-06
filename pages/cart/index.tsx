@@ -6,9 +6,9 @@ import Head from 'next/head';
 
 const Cart:FC = () => {
   const [goods, setGoods] = useState<CategoryData[] | []>([]);
-  const [total, setTotal] = useState(0);
-  const [update, setUpdate] = useState(false);
-  const [isModal, setIsModal] = useState(false);
+  const [total, setTotal] = useState<number>(0);
+  const [update, setUpdate] = useState<boolean>(false);
+  const [isModal, setIsModal] = useState<boolean>(false);
 
   useEffect(() => {
     if (localStorage.getItem('cart')) {

@@ -1,4 +1,4 @@
-import { GetServerSideProps} from 'next';
+import { GetServerSideProps } from 'next';
 import React, { ReactNode} from 'react';
 import CategoryList from '../../components/CategoryList';
 import { CategoryData, CategoryDatas } from '../../types/category';
@@ -7,7 +7,7 @@ import { useRouter } from 'next/router';
 import Head from 'next/head';
 
 
-const Category = ({data = []}: CategoryDatas): JSX.Element => {
+const Category= ({data = []}: CategoryDatas): JSX.Element => {
   const router = useRouter();
   return (
     <>

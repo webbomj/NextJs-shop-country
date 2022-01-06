@@ -5,8 +5,8 @@ import styles from '../styles/CartItem.module.scss';
 import { useRouter } from 'next/router';
 
 const CartsList = ({item, deleteLocal, changeFlag}: CartsItemProps) => {
-  const [inputValue, setInputValue] = useState(item.count);
-  const [price, setPrice] = useState(+Math.abs(((item.area / item.population) * 10000)).toFixed(2));
+  const [inputValue, setInputValue] = useState<number>(item.count);
+  const [price, setPrice] = useState<number>(+Math.abs(((item.area / item.population) * 10000)).toFixed(2));
   let fullPrice = price * inputValue;
   const router = useRouter();
 

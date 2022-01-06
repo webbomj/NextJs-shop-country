@@ -5,8 +5,9 @@ import styles from '../../styles/Comparisons.module.scss'
 import { useRouter } from 'next/router';
 import Trash from '../../components/ui/icons/Trash';
 import Head from 'next/head';
+import { NextPage } from 'next';
 
-const Comparison = () => {
+const Comparison:NextPage = () => {
   const router = useRouter()
   const [numberOfGood, setNumberOfGood ] = useState(0);
   const [allComparisonGoods, setAllComparisonGoods] = useState<CategoryData[]>([]);
