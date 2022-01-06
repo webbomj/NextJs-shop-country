@@ -39,12 +39,12 @@ const Header: FC = () => {
       <div className={styles.icons}>
         <div className={styles.iconItem} onClick={() => router.push(`${process.env.NEXT_PUBLIC_API_URL}comparisons`)}>          
           <Comparison width='20px' height='20px' color='#e86a23'/>
-          <span>Comparison</span>
+          <span className={styles.links}>Comparison</span>
           <div className={comparison === 0 ? styles.iconCounterHide : styles.iconCounter}>{comparison}</div>
         </div>
         <div className={styles.iconItem} onClick={() => router.push(`${process.env.NEXT_PUBLIC_API_URL}cart`)}> 
           <Cart width='20px' height='20px' color='#e86a23'/>
-          <span>Cart</span>
+          <span className={styles.links}>Cart</span>
           <div className={cart === 0 ? styles.iconCounterHide : styles.iconCounter}>{cart}</div>
         </div>
       </div>

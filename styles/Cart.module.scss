@@ -35,16 +35,15 @@
 }
 
 .modalWindowActive {
-  display: flex;
-  justify-content: center;
-  align-items: center;
+  display: fixed;
   position: absolute;
   top: 10vh;
-  left: calc(50vh + (320px / 2));
+  left: calc(50vw - (320px / 2));
   min-width: 320px;
   min-height: 320px;
   background-color: grey;
   border-radius: 10px;
+  text-align: center;
 }
 
 .closeIcon {
@@ -57,10 +56,11 @@
 }
 
 .text {
+  display: block;
+  margin: 100px 15px 0 15px;
   font-size: 24px;
   text-align: center;
   color: white;
-  margin: 0 15px 0 15px;
 }
 
 .cartEmpty {
