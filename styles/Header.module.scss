@@ -38,6 +38,7 @@
   display: flex;
   align-items: center;
   margin-right: 10px;
+
   svg {
     margin-right: 2px;
     transform: translateY(-1px);
@@ -77,6 +78,9 @@
 .links {
   color: #e86a23;
   text-decoration: underline;
+  &:hover {
+    color: #be5a20;
+  }
 }
 
 @media screen AND (max-width: 1024px){

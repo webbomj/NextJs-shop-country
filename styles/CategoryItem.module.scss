@@ -47,6 +47,9 @@
   border-radius: 50%;
   background-color: blanchedalmond;
   cursor: pointer;
+    &:hover {
+      background-color: rgb(255, 212, 147);
+    }
 }
 
 .a {

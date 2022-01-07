@@ -6,7 +6,6 @@ import styles from '../../styles/Category.module.scss';
 import { useRouter } from 'next/router';
 import Head from 'next/head';
 
-
 const Category= ({data = []}: CategoryDatas): JSX.Element => {
   const router = useRouter();
   return (

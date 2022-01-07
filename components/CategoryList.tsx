@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import Image from 'next/image';
 import { CategoryItemProps } from '../types/category';
 import styles from '../styles/CategoryItem.module.scss'
@@ -8,10 +8,20 @@ import { CategoryData } from '../types/category';
 
 const CategoryList = ({item}:CategoryItemProps):JSX.Element => {
   let price = '0';
+  const [isClicked, setIsClicked] = useState(false);
+  const [isInLocalStorage, setIsInLocalStorage] = useState(false)
 
   if (item?.area && item?.population) {
     price = Math.abs(((item.area / item.population) * 10000)).toFixed(2);
   }
+
+  useEffect(() => {
+    let localStorageArr: CategoryData[] = JSON.parse(localStorage.getItem('comparison') || '');
+    let onlyEl = localStorageArr.find(el => el.name.common === item.name.common)
+    if (onlyEl?.name.common) {
+      setIsInLocalStorage(!isInLocalStorage)
+    }
+   }, [isClicked])
 
   const addToCart = (flag: string) => {
     const oldLocalStorage = localStorage.getItem(flag);
@@ -26,16 +36,20 @@ const CategoryList = ({item}:CategoryItemProps):JSX.Element => {
         [...oldCart.filter(el => el.name.common !== item?.name.common), 
         ...upCurrentItem];
         localStorage.removeItem(flag);
-        localStorage.setItem(flag, JSON.stringify( newCart ));   
+        localStorage.setItem(flag, JSON.stringify( newCart ));
+        setIsClicked(!isClicked)   
         return
       } else {
         newCartStorage = JSON.stringify([...oldCart, {...item, count: 1}]);
+        setIsClicked(!isClicked) 
       }    
     } else {
       newCartStorage = JSON.stringify([{...item, count: 1}]);
+      setIsClicked(!isClicked) 
     }
     localStorage.setItem(flag, newCartStorage);
   }
+
 
   return (
     <div className={styles.cart}>
@@ -46,7 +60,7 @@ const CategoryList = ({item}:CategoryItemProps):JSX.Element => {
           </a>
         </Link>
         <div className={styles.comparison} onClick={() => addToCart('comparison')}>
-          <Comparison width='30px' height='30px' color='#e86a23'/>
+          <Comparison width='30px' height='30px' color={isInLocalStorage ? 'black' : '#e86a23'} />
         </div>
       </div>
       <div className={styles.info}>

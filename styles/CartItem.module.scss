@@ -66,6 +66,9 @@
   color: #e86a23;
   border: none;
   padding: 10px;
+  &:hover {
+    background-color: rgb(238, 198, 198);
+  }
 }
 
 

@@ -76,5 +76,8 @@
     border-radius: 10px;
     padding: 5px 15px 5px 15px;
     cursor: pointer;
+    &:hover {
+      background-color: rgb(235, 95, 95);
+    }
   }
 }

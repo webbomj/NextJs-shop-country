@@ -72,7 +72,7 @@ const Country = ({data}: CategoryDatas): JSX.Element => {
           <div className={styles.img}>
             <Image src={data[0]?.flags?.svg ? data[0]?.flags.svg : data[0]?.flags.png}
               width='500px'
-              height='250px'
+              height='250px'  
               alt={data[0]?.name?.common}
               />
               <div onClick={() => addToCart('comparison')}>
