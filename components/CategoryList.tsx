@@ -50,7 +50,6 @@ const CategoryList = ({item}:CategoryItemProps):JSX.Element => {
     localStorage.setItem(flag, newCartStorage);
   }
 
-
   return (
     <div className={styles.cart}>
       <div className={styles.img}>

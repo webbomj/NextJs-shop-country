@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { GetServerSideProps } from 'next';
 import { useRouter } from 'next/router';
 import Image from 'next/image';
@@ -14,6 +14,17 @@ const Country = ({data}: CategoryDatas): JSX.Element => {
   const languages = Object.keys(data[0]?.languages);
   const linkRegion = `${process.env.NEXT_PUBLIC_API_URL}/category/${data[0]?.region?.toLowerCase()}`;
   
+  const [isClicked, setIsClicked] = useState(false);
+  const [isInLocalStorage, setIsInLocalStorage] = useState(false);
+
+  useEffect(() => {
+    let localStorageArr: CategoryData[] = JSON.parse(localStorage.getItem('comparison') || '');
+    let onlyEl = localStorageArr.find(el => el.name.common === data[0].name.common)
+    if (onlyEl?.name.common) {
+      setIsInLocalStorage(!isInLocalStorage)
+    }
+   }, [isClicked])
+
   const incCounter = () => {
     setQuantity(prev => prev + 1);
   }
@@ -42,16 +53,19 @@ const Country = ({data}: CategoryDatas): JSX.Element => {
         ...upCurrentItem];
         localStorage.removeItem(flag);
         localStorage.setItem(flag, JSON.stringify( newCart ));   
+        setIsClicked(!isClicked);
         return
       } else {
         newCartStorage = JSON.stringify([...oldCart, {...data[0], count: quantity,
           totalPrice: +Math.abs(((data[0].area / data[0].population) * 10000)).toFixed(2) * quantity
         }]);
+        setIsClicked(!isClicked);
       }    
     } else {
       newCartStorage = JSON.stringify([{...data[0], count: quantity, 
         totalPrice: +Math.abs(((data[0].area / data[0].population) * 10000)).toFixed(2) * quantity
       }]);
+      setIsClicked(!isClicked);
     }
     localStorage.setItem(flag, newCartStorage);
   }
@@ -76,7 +90,7 @@ const Country = ({data}: CategoryDatas): JSX.Element => {
               alt={data[0]?.name?.common}
               />
               <div onClick={() => addToCart('comparison')}>
-                <Comparison width='30px' height='30px' color='#e86a23'/>
+                <Comparison width='30px' height='30px' color={isInLocalStorage ? 'black' : '#e86a23'} />
               </div>
           </div>
           <div>
