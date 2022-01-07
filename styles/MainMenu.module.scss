@@ -27,3 +27,10 @@
 .a {
   color: #e86a23;
 }
+
+@media screen AND (max-width: 590px) {
+  .mainMenu  {
+    flex-wrap: wrap;
+  }
+ 
+}

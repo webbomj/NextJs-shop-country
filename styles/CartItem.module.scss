@@ -68,3 +68,19 @@
   padding: 10px;
 }
 
+
+@media screen AND (max-width: 680px) {
+  .wrapper {
+    min-width: 400px;
+    flex-direction: column;
+
+  }
+}
+
+@media screen AND (max-width: 450px) {
+  .wrapper {
+    min-width: 250px;
+    flex-direction: column;
+
+  }
+}

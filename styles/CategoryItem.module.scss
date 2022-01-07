@@ -51,3 +51,12 @@
 .a {
   color: #e86a23;
 }
+
+@media screen AND (max-width: 1110px) {
+  .cart {
+    &:nth-child(4n) {
+      margin-right: 20px;
+    }
+    
+  }
+}

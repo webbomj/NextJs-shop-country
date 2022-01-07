@@ -78,3 +78,21 @@
   color: #e86a23;
   text-decoration: underline;
 }
+
+@media screen AND (max-width: 1024px){
+  .input {
+    width: 470px;
+  }
+}
+
+@media screen AND (max-width: 800px){
+  .input {
+    width: 250px;
+  }
+}
+
+@media screen AND (max-width: 580px){
+  .input {
+    display: none;
+  }
+}

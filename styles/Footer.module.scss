@@ -11,3 +11,12 @@
 .a {
   color: #e86a23;
 }
+
+
+@media screen AND (max-width: 420px){
+  .footer {
+    display: flex;
+    flex-direction: column;
+    margin: 0 auto;
+  }
+}

@@ -57,6 +57,7 @@ const Comparison:NextPage = () => {
       <div className={styles.arrowRelative}>
         <div className={styles.arrowLeft} onClick={() => swapLeftTable()}></div>
         <div className={styles.arrowRight} onClick={() => swapRightTable()}></div>
+        <div className={styles.bigTable}>
         <table className={styles.table}>
           <tbody>
             <tr className={styles.tr}>
@@ -80,6 +81,7 @@ const Comparison:NextPage = () => {
                     <div onClick={() => deleteFavorite(numberOfGood)}>
                       <Trash width='30px' height='30px' color='#e86a23'/>
                     </div>
+                    <div className={styles.ArrowMobileLeft} onClick={() => swapLeftTable()} >&#8656;</div>
                 </>
                   : null}
               </td>
@@ -123,6 +125,7 @@ const Comparison:NextPage = () => {
                   <div onClick={() => deleteFavorite(numberOfGood + 2)}>
                     <Trash width='30px' height='30px' color='#e86a23'/>
                   </div>
+                  <div className={styles.ArrowMobileRight} onClick={() => swapRightTable()} >&#8658;</div>
                 </>
                   : null}
               </td> : null}
@@ -225,7 +228,7 @@ const Comparison:NextPage = () => {
             </tr>
           </tbody>
         </table>
-        
+        </div>
       </div>
     </>
   : <span className={styles.span}>Nothing in comparison`s table</span>}
