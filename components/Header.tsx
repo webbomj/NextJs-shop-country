@@ -1,4 +1,4 @@
-import React, {ChangeEvent, FC, KeyboardEvent, useState} from 'react';
+import React, {ChangeEvent, FC, KeyboardEvent, useState, useEffect} from 'react';
 import Image from 'next/image'
 import styles from '../styles/Header.module.scss';
 import Comparison from './ui/icons/Comparison';
@@ -18,6 +18,13 @@ const Header: FC = () => {
   const handleInput = (e:ChangeEvent<HTMLInputElement>) => {
     setInputValue(e.target.value)
   }
+
+  useEffect(() => {
+    if (localStorage.getItem('comparison') === null || localStorage.getItem('comparison') === null) {
+      localStorage.setItem('comparison', '[]')
+      localStorage.setItem('cart', '[]')
+    }
+  },[])
 
   const handleKeyDown = (e:KeyboardEvent<HTMLInputElement>) => {
     if (e.key === 'Enter') {
