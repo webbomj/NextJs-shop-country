@@ -1,16 +1,10 @@
 import type { NextPage } from 'next';
 import Head from 'next/head';
-import { useEffect } from 'react';
 import MainMenu from '../components/MainMenu';
 import styles from '../styles/Home.module.scss';
 
 const Home: NextPage = () => {
-  useEffect(() => {
-    if (localStorage.getItem('comparison') === null || localStorage.getItem('comparison') === null) {
-      localStorage.setItem('comparison', '[]')
-      localStorage.setItem('cart', '[]')
-    }
-  },[])
+  
   return (
     <>
       <Head>

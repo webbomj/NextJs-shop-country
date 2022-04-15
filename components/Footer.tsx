@@ -1,9 +1,16 @@
 import Link from 'next/link';
 import React, {FC} from 'react';
 import styles from '../styles/Footer.module.scss';
+import { useEffect } from 'react';
 
 
 const Footer: FC = () => {
+  useEffect(() => {
+    if (localStorage.getItem('comparison') === null || localStorage.getItem('comparison') === null) {
+      localStorage.setItem('comparison', '[]')
+      localStorage.setItem('cart', '[]')
+    }
+  },[])
   return (
     <footer className={styles.footer}>
       <div>Shopka &#169; {new Date().getFullYear()}</div> 
