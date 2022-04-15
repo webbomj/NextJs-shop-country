@@ -15,6 +15,8 @@ const Comparison:NextPage = () => {
   useEffect(() => {
     if (localStorage.getItem('comparison') !== null) {
       setAllComparisonGoods(JSON.parse(localStorage.getItem('comparison') || ''));
+    }else {
+      localStorage.setItem('comparison', '[]')
     }
   }, [])
 
